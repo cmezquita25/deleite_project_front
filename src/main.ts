@@ -10,6 +10,9 @@ import './assets/js/scripts.js'
 
 import './assets/css/navbar.css'
 import './assets/css/footer.css'
+import './assets/css/login.css'
+
+import './assets/css/cruds.css'
 
 import './assets/css/base.css'
 import './assets/css/Inicio.css'

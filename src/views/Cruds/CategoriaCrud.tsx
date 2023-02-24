@@ -43,7 +43,7 @@ const CategoriaCrud = defineComponent({
             if (response.status === 201) {
               console.log('Se ha creado una nueva categoría:', response.Data);
               console.log(response)
-              
+
             }
             else {
 
@@ -91,21 +91,40 @@ const CategoriaCrud = defineComponent({
     return (
 
       <>
-        <br />
-        <br />
-        <div class="container">
-          <form>
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Nombre categoria</label>
-              <input type="text" class="form-control" autocomplete="off" id="nombre" value={this.categoria.nombre} name="nombre" onChange={(e) => this.handlerchange(e)} aria-describedby="emailHelp" />
-              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Imagen</label>
-              <input type="text" class="form-control" autocomplete="off" id="imagen" name="imagen" value={this.categoria.imagen} onChange={(e) => this.handlerchange(e)} />
-            </div>
-            <button  onClick={this.crearCategoria} class="btn btn-primary">Submit</button>
-          </form>
+        <div class="Container_Create">
+          <div>
+
+            <h2>CATEGORIAS</h2>
+            <h6 style="width:600px">Las categorias te permiten administrar y controlar la vista de los productos que ofreces y tienes
+              disponibles en la sección del "Catálogo"</h6>
+
+          </div>
+          &nbsp;
+          <div class="Create_Form">
+
+            <form>
+
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label LabelsForms">Nombre de la Categoria</label>
+                <input type="text" class="form-control" autocomplete="off" id="nombre" value={this.categoria.nombre} name="nombre" onChange={(e) => this.handlerchange(e)} aria-describedby="emailHelp" />
+              </div>
+
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label LabelsForms">Imagen</label>
+                <input type="text" class="form-control" autocomplete="off" id="imagen" name="imagen" value={this.categoria.imagen} onChange={(e) => this.handlerchange(e)} />
+              </div>
+
+              <div class="mb-3">
+                <input type="file" class="form-control" aria-label="file example" required />
+                <div class="invalid-feedback">Inválido</div>
+              </div>
+
+              <div class="mb-3">
+                <button onClick={this.crearCategoria} class="btn btn-cruds">Enviar</button>
+              </div>
+
+            </form>
+          </div>
         </div>
 
       </>
@@ -113,4 +132,4 @@ const CategoriaCrud = defineComponent({
   }
 })
 
-export default CategoriaCrud
+export default CategoriaCrud

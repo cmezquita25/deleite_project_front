@@ -13,43 +13,48 @@ const router = createRouter({
     {
       path: '/inicio',
       name: 'inicio',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+
       component: () => import('@/views/HomeView')
     },
 
     {
       path: '/catálogo',
       name: 'catalogo',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+
       component: () => import('@/views/Catalogo')
     },
     {
       path: '/contacto',
       name: 'contacto',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+
       component: () => import('@/views/Contacto')
     },
     {
       path: '/testimonios',
       name: 'testimonios',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+
       component: () => import('@/views/Testimonios')
     },
 
     {
+      path: '/login',
+      name: 'login',
+
+      component: () => import('@/views/Login/Login')
+    },
+
+    {
+      path: '/registro',
+      name: 'registro',
+
+      component: () => import('@/views/Login/Registrarse')
+    },
+
+    //CRUD CATEGORIAS
+    {
       path: '/crearcategoria',
-      name: 'crear categoria',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      name: 'crearcategoria',
+
       component: () => import('@/views/Cruds/CategoriaCrud')
     },
   ]

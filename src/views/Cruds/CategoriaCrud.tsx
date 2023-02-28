@@ -115,8 +115,8 @@ const CategoriaCrud = defineComponent({
               </div>
 
               <div class="mb-3">
-                <input type="file" class="form-control" aria-label="file example" required />
-                <div class="invalid-feedback">Inválido</div>
+                <label for="formFileMultiple" class="form-label LabelsForms">Imágenes</label>
+                <input class="form-control" type="file" id="formFileMultiple" multiple/>
               </div>
 
               <div class="mb-3">

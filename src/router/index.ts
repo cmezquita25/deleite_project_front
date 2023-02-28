@@ -57,6 +57,28 @@ const router = createRouter({
 
       component: () => import('@/views/Cruds/CategoriaCrud')
     },
+    
+    //CRUD PRODUCTOS
+    {
+      path: '/crearproducto',
+      name: 'crearproducto',
+
+      component: () => import('@/views/Cruds/Productos/ProductoCrud')
+    },
+
+    {
+      path: '/consultarproducto',
+      name: 'consultarproducto',
+
+      component: () => import('@/views/Cruds/Productos/ConsultarProducto')
+    },
+
+    {
+      path: '/detalleproducto',
+      name: 'detalleproducto',
+
+      component: () => import('@/views/Cruds/Productos/DetalleProducto')
+    },
   ]
 })
 

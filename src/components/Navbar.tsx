@@ -30,16 +30,28 @@ const Navbar = defineComponent({
                                 </li>
 
                                 <li class="nav-item">
-                                    <router-link to="/crearcategoria" class="nav-link">Crear categoria</router-link>
+                                    
                                 </li>
 
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Administrador</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                                        <li><hr class="dropdown-divider"/></li>
                                         <li><router-link class="dropdown-item" to="/login">Iniciar sesión</router-link></li>
                                         <li><router-link class="dropdown-item" to="/registro">Registrar</router-link></li>
                                         <li><a class="dropdown-item" href="/inicio">Cerrar sesión</a></li>
+                                        <li><hr class="dropdown-divider"/></li>
+                                        <li><router-link to="/crearcategoria" class="dropdown-item">Crear categoria</router-link></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
+                                    <ul class="dropdown-menu">
+                                        <li><router-link class="dropdown-item" to="/crearproducto">Crear producto</router-link></li>
+                                        <li><router-link class="dropdown-item" to="/consultarproducto">Consultar productos</router-link></li>
+                                        <li><router-link class="dropdown-item" to="/detalleproducto">Detalle productos</router-link></li>
                                     </ul>
                                 </li>
 

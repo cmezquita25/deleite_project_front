@@ -5,11 +5,21 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { useRouter, RouterLink, RouterView } from 'vue-router'
 import Navbar from '@/components/Navbar'
 import Footer from './components/Footer'
 
+const router = useRouter();
+const handleRouteChange = () => {
+    window.scrollTo(0, 0);
+};
+router.afterEach(() => {
+    handleRouteChange();
+});
+
 </script>
+
+
 
 
 <style>

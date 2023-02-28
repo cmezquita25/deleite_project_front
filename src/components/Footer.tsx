@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
 
+
 const Footer = defineComponent({
     render() {
         return (
@@ -24,24 +25,7 @@ const Footer = defineComponent({
 
                                     <hr class="w-100 clearfix d-md-none" />
                                     <div class="col-md-2 col-lg-2 col-xl-3 mx-auto mt-3">
-                                        <h6 class="text-center text-uppercase mb-4 font-weight-bold">Horarios</h6>
-                                        <table class="text-center table text-white">
-                                            <tbody class="fw-normal">
-                                                <tr>
-                                                    <td>Lunes - Viernes:</td>
-                                                    <td>8am - 7pm </td>
-                                                </tr>
 
-                                                <tr>
-                                                    <td>Sábado - Domingo:</td>
-                                                    <td>8am - 5pm </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Feriados/Especiales:</td>
-                                                    <td>10am - 2pm </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                     <hr class="w-100 clearfix d-md-none" />
                                     <hr class="w-100 clearfix d-md-none" />
@@ -65,6 +49,7 @@ const Footer = defineComponent({
                                             &nbsp;
                                             <a href="#" class="m-1 fa fa-whatsapp"></a>
                                             &nbsp;
+                                            <a href="#" class="m-1 fa fa-tiktok"></a>
                                         </div>
                                         &nbsp;
                                     </div>

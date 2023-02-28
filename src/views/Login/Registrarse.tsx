@@ -4,7 +4,7 @@ const registrarse = defineComponent({
     render() {
         return (
             <>
-                <section class="vh-100 LoginCentrado">
+                <section class="LoginCentrado">
                     <div class="container-fluid h-custom backgroundLogin">
                         <div>
                             <h1>Registro de cuenta</h1>

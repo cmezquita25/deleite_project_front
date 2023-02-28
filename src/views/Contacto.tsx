@@ -24,6 +24,7 @@ const Contacto = defineComponent({
                                     &nbsp;
                                     <a href="#" class="m-1 fa fa-whatsapp bounce-in" style="animation-delay: 1500ms;"></a>
                                     &nbsp;
+                                    <a href="#" class="m-1 fa fa-tiktok bounce-in" style="animation-delay: 2000ms;"></a>
                                 </div>
                             </div>
                         </section>

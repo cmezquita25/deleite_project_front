@@ -1,15 +1,18 @@
 .LoginCentrado{
+    padding-top: 10%;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
     text-align: center;
+    padding-bottom: 10%;
 
-    height: 100vh;
 }
 
 .backgroundLogin{
     background-color: white !important;
+    align-items: stretch !important;
+    flex-direction: column;
 }
 
 .form-control {

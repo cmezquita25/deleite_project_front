@@ -1,6 +1,51 @@
+import { Call } from "../../../helpers/calls/Call"
 import { defineComponent } from "vue";
 
+interface Login {
+    nombre?: string,
+    contraseña?: string
+}
+
+
+
+let oCall = new Call()
 const login = defineComponent({
+    data() {
+        return {
+            valores: Object as Login,
+            login: Object as Login
+        }
+    },
+
+    methods: {
+        handlerchange(e: any) {
+            const { name, value } = e.target;
+            this.valores = ({ ...this.valores, [name]: value })
+        },
+        iniciarSesion(e:any) {
+            e.preventDefault(),
+            oCall.cenisFetch('POST', 'api/Usuario/login', "", this.valores)
+                .then((response) => {
+                    console.log(response)
+                    if (response.Data.success) {
+                        const token = response.Data.result; // suponiendo que la respuesta del servidor tiene una propiedad "token" que contiene el token
+                        console.log(token);
+                        // Almacena el token en el local storage
+                        localStorage.setItem("token", token);
+                        console.log(response.Data)
+                        this.$router.push("/inicio")
+                    }
+
+                    else{
+                        console.log("Error")
+                    }
+
+                })
+                .catch((error) => {
+                    console.error('Ha ocurrido un error al momento de iniciar ssesion', error)
+                });
+        }
+    },
     render() {
         return (
             <>
@@ -25,13 +70,13 @@ const login = defineComponent({
                                     <h2 class="display-6 tituloLogin" style="color: #724a3a">INICIAR SESIÓN</h2>
                                     <br></br>
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form3Example3" class="form-control form-control-lg"
+                                        <input type="email" id="form3Example3" value={this.login.nombre} name="nombre" onChange={(e) => this.handlerchange(e)} class="form-control form-control-lg"
                                             placeholder="Correo" aria-label="Correo" />
                                     </div>
 
 
                                     <div class="form-outline mb-3">
-                                        <input type="password" id="form3Example4" class="form-control form-control-lg"
+                                        <input type="password" id="form3Example4" value={this.login.contraseña} name="contraseña" onChange={(e) => this.handlerchange(e)} class="form-control form-control-lg"
                                             placeholder="Contraseña" />
                                     </div>
 
@@ -47,7 +92,7 @@ const login = defineComponent({
 
                                     <div class="text-center text-lg-start mt-4 pt-2">
                                         <div class="text-center">
-                                            <a type="button" href="#" class="btn btn-login btn-login2">Iniciar sesión</a>
+                                            <button onClick={(e) => this.iniciarSesion(e)} class="btn btn-login btn-login2">Iniciar sesión</button>
                                         </div>
                                     </div>
 

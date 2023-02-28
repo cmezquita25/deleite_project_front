@@ -1,6 +1,13 @@
+import router from "@/router";
 import { defineComponent } from "vue";
 
 const Navbar = defineComponent({
+    methods: {
+        cerrarsesion(){
+            localStorage.removeItem("token");
+            this.$router.push("/login")
+        }
+    },
     render() {
         return (
             <>
@@ -14,7 +21,7 @@ const Navbar = defineComponent({
                         <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/">Inicio</a>
+                                    <a class="nav-link" href="/inicio">Inicio</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -37,9 +44,10 @@ const Navbar = defineComponent({
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Administrador</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                                        <li><router-link class="dropdown-item" to="/creartematica">Crear tematica</router-link></li>
                                         <li><router-link class="dropdown-item" to="/login">Iniciar sesión</router-link></li>
                                         <li><router-link class="dropdown-item" to="/registro">Registrar</router-link></li>
-                                        <li><a class="dropdown-item" href="/inicio">Cerrar sesión</a></li>
+                                        <li><a class="dropdown-item" onClick={this.cerrarsesion}>Cerrar sesión</a></li>
                                     </ul>
                                 </li>
 

@@ -57,6 +57,13 @@ const router = createRouter({
 
       component: () => import('@/views/Cruds/CategoriaCrud')
     },
+
+    {
+      path: '/creartematica',
+      name: 'creartematica',
+
+      component: () => import('@/views/Cruds/TematicaCrud')
+    },
   ]
 })
 

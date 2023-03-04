@@ -1,11 +1,37 @@
-import router from "@/router";
+import { Call } from "../../helpers/calls/Call";
 import { defineComponent } from "vue";
+import router from "@/router";
+interface producto {
+    
+    
+}
+
+let oCall = new Call();
 
 const Navbar = defineComponent({
     methods: {
         cerrarsesion(){
             localStorage.removeItem("token");
             this.$router.push("/login")
+        },
+        crearProducto() {
+            oCall.cenisFetch('POST', 'api/Producto/create', "", {"idProducto":null})
+            .then((response) => {
+              console.log(response)
+              if (response.status === 200) {
+                console.log('Se ha creado una nueva categoría:', response.Data.idProducto);
+                console.log(response)
+                this.$router.push({ name: 'crearproducto', params: { id: response.Data.idProducto }})
+              }
+              else {
+                console.log("Error")
+              }
+    
+            })
+    
+            .catch((error) => {
+              console.error('Ha ocurrido un error al crear una nueva categoría:', error);
+            });
         }
     },
     render() {
@@ -57,7 +83,7 @@ const Navbar = defineComponent({
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
                                     <ul class="dropdown-menu">
-                                        <li><router-link class="dropdown-item" to="/crearproducto">Crear producto</router-link></li>
+                                        <li><button class="dropdown-item" onClick={this.crearProducto}>Crear producto</button></li>
                                         <li><router-link class="dropdown-item" to="/consultarproducto">Consultar productos</router-link></li>
                                         <li><router-link class="dropdown-item" to="/detalleproducto">Detalle productos</router-link></li>
                                     </ul>
@@ -72,6 +98,9 @@ const Navbar = defineComponent({
 
     }
 })
+
+
+  
 
 export default Navbar
 

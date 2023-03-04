@@ -66,7 +66,7 @@ const router = createRouter({
     },
     //CRUD PRODUCTOS
     {
-      path: '/crearproducto',
+      path: '/crearproducto/:id',
       name: 'crearproducto',
 
       component: () => import('@/views/Cruds/Productos/ProductoCrud')

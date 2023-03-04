@@ -29,7 +29,7 @@ const CategoriaCrud = defineComponent({
       if (this.accion === "editar") {
         oCall.cenisFetch('PUT', `api/Categoria/${this.id}`, "", this.valores)
           .then((response) => {
-            console.log(response)
+            console.log(response) 
           })
 
           .catch((error) => {

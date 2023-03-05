@@ -21,14 +21,12 @@ const Navbar = defineComponent({
               if (response.status === 200) {
                 console.log('Se ha creado una nueva categoría:', response.Data.idProducto);
                 console.log(response)
-                this.$router.push({ name: 'crearproducto', params: { id: response.Data.idProducto }})
+                this.$router.push({ name: 'crearproducto', params: { id: response.Data.idProducto, trueorfalse: response.Data.idConfirmacionT}})
               }
               else {
                 console.log("Error")
               }
-    
             })
-    
             .catch((error) => {
               console.error('Ha ocurrido un error al crear una nueva categoría:', error);
             });
@@ -84,6 +82,8 @@ const Navbar = defineComponent({
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Productos</a>
                                     <ul class="dropdown-menu">
                                         <li><button class="dropdown-item" onClick={this.crearProducto}>Crear producto</button></li>
+                                        <li><router-link  class="dropdown-item" to="/products/view">Ver Productos</router-link ></li>
+
                                         <li><router-link class="dropdown-item" to="/consultarproducto">Consultar productos</router-link></li>
                                         <li><router-link class="dropdown-item" to="/detalleproducto">Detalle productos</router-link></li>
                                     </ul>

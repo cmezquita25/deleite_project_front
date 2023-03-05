@@ -92,6 +92,7 @@ const Producto = defineComponent({
       this.valores = ({ ...this.valores, [name]: value })
 
     },
+
     async AgregarFotos() {
 
       const container = document.getElementById('contenedor-inputs');
@@ -177,6 +178,9 @@ const Producto = defineComponent({
       var imagen = await readFileAsBase64(imagenElement.files?.[0]);
       var nombreid = (document.getElementById('idProducto') as HTMLInputElement).value;
 
+      const nombreP = (document.getElementById('nombreP') as HTMLInputElement).value;
+      const precio = (document.getElementById('precio') as HTMLInputElement).value;
+      const descripcionP = (document.getElementById('descripcionP') as HTMLInputElement).value;
 
       const idcategoria = (document.getElementById('idcategoria') as HTMLSelectElement).value;
       const idtematica = (document.getElementById('idtematica') as HTMLSelectElement).value;
@@ -185,13 +189,16 @@ const Producto = defineComponent({
       const saludable = (document.getElementById('saludable') as HTMLSelectElement).value;
 
 
-
+      this.valores.nombreP = nombreP;
+      this.valores.precio = precio;
+      this.valores.descripcionP = descripcionP;
       this.valores.IdProducto = parseInt(nombreid);
       this.valores.idCategoria = parseInt(idcategoria);
       this.valores.idTematica = parseInt(idtematica);
       this.valores.popular = Boolean(popular);
       this.valores.ingredienteselect = ingredienteselect;
-      this.valores.saludable = Boolean(saludable);
+      this.valores.saludable =Boolean(saludable);
+      console.log( this.valores.saludable);
       this.valores.ImagenPrincipalchar = imagen;
 
 
@@ -268,11 +275,49 @@ const Producto = defineComponent({
       }
     },
 
+     updateProductos(){
+      const nombreid = (document.getElementById('idProducto') as HTMLInputElement).value;
+      var id = parseInt(nombreid);
+      const url = `api/Producto/get/${id}`;
+      const nombreP = document.getElementById('nombreP') as HTMLInputElement;
+      const ingredienteselect = document.getElementById('ingredienteselect') as HTMLInputElement;
+      const precio = document.getElementById('precio') as HTMLInputElement;
+      const descripcionP = document.getElementById('descripcionP') as HTMLInputElement;
+
+
+      const select = document.getElementById("idtematica") as HTMLSelectElement;
+      const select2 = document.getElementById("idcategoria") as HTMLSelectElement;
+      const popular = document.getElementById("popular") as HTMLSelectElement;
+      const saludable = document.getElementById("saludable") as HTMLSelectElement;
+
+      oCall.cenisFetch("GET", url, "", "")
+      .then(async(response)=>{
+        nombreP.value=response.Data["nombreP"];
+        ingredienteselect.value=response.Data["ingredienteselect"];
+        precio.value=response.Data["precio"];
+        descripcionP.value=response.Data["descripcionP"];
+        select.value=response.Data["idTematica"];
+        select2.value=response.Data["idCategoria"];
+        popular.value=response.Data["popular"] ? "1" : "";
+        saludable.value=response.Data["saludable"] ? "1" : "";
+
+        
+
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
+    }
+
 
   },
   mounted() {
     this.llenarCategorias(),
       this.llenarTematica()
+      if(this.$route.params.id !== null && Boolean(this.$route.params.trueorfalse) ==true){
+        
+        this.updateProductos()
+      }
   },
 
   render() {
@@ -318,49 +363,51 @@ const Producto = defineComponent({
                           <input id="idProducto" name="idProducto" type="number" value={this.$route.params.id} style="display:none" />
                           <div class="mb-3">
                             <label for="idcategoria">Categoria</label>
-                            <select class="form-select" id="idcategoria" aria-label="Default select example">
+                            <select class="form-select" id="idcategoria" onChange={(e) => this.handlerchange(e)} aria-label="Default select example">
                             </select>
                           </div>
 
                           <div class="mb-3">
                             <label for="idtematica">Tematica</label>
 
-                            <select class="form-select" id="idtematica" aria-label="Default select example">
+                            <select class="form-select" id="idtematica" onChange={(e) => this.handlerchange(e)} aria-label="Default select example">
                             </select>
                           </div>
 
 
                           <div class="mb-3">
-                            <select class="form-select" id="popular" aria-label="Default select example">
+                          <label for="popular">Popular</label>
+                            <select class="form-select" id="popular" onChange={(e) => this.handlerchange(e)} aria-label="Default select example">
                               <option selected>¿Es popular?</option>
                               <option value="1">SI</option>
-                              <option value="0">NO</option>
+                              <option value="">NO</option>
                             </select>
                           </div>
 
 
                           <div class="mb-3">
-                            <select class="form-select" id="saludable" aria-label="Default select example">
+                          <label for="saludable">Saludable</label>
+                            <select class="form-select" id="saludable" onChange={(e) => this.handlerchange(e)} aria-label="Default select example">
                               <option selected>¿Es saludable?</option>
                               <option value="1">SI</option>
-                              <option value="0">NO</option>
+                              <option value="">NO</option>
                             </select>
                           </div>
 
 
                           <div class="mb-3">
                             <label>Nombre</label>
-                            <input type="text" class="form-control" name="nombreP" onChange={(e) => this.handlerchange(e)} required />
+                            <input type="text" class="form-control" name="nombreP" id="nombreP" onChange={(e) => this.handlerchange(e)} required />
                           </div>
 
                           <div class="mb-3">
                             <label>Ingredientes</label>
-                            <input type="text" class="form-control" name="ingredienteselect" id="ingredienteselect" required />
+                            <input type="text" class="form-control" name="ingredienteselect" id="ingredienteselect" onChange={(e) => this.handlerchange(e)} required />
                           </div>
 
                           <div class="mb-3">
                             <label>Precio</label>
-                            <input type="number" class="form-control" name="precio" onChange={(e) => this.handlerchange(e)} required />
+                            <input type="number" class="form-control" name="precio" id="precio" onChange={(e) => this.handlerchange(e)} required />
                           </div>
 
                           <div class="mb-3">
@@ -370,12 +417,12 @@ const Producto = defineComponent({
 
                           <div class="mb-3">
                             <label>Imagen</label>
-                            <input type="file" class="form-control" id="imagen" name="imagen" required />
+                            <input type="file" class="form-control" id="imagen" onChange={(e) => this.handlerchange(e)} name="imagen" required />
                           </div>
 
                           <div class="mb-3">
-                            <button onClick={this.crearCategoria} type="button" class="btn btn-cruds">Crear producto</button>
-                            <button onClick={this.AgregarFotos} id="crear-input" type="button" class="btn btn-cruds">Agregar nueva foto</button>
+                            <button onClick={this.crearCategoria} type="button" class="btn btn-cruds" onChange={(e) => this.handlerchange(e)}>Crear producto</button>
+                            <button onClick={this.AgregarFotos} id="crear-input" type="button" onChange={(e) => this.handlerchange(e)} class="btn btn-cruds">Agregar nueva foto</button>
                             <button onClick={this.borrarProducto} id="crear-inpust" type="button" class="btn btn-cruds">Cancelar</button>
 
                           </div>

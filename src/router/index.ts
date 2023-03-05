@@ -66,10 +66,22 @@ const router = createRouter({
     },
     //CRUD PRODUCTOS
     {
-      path: '/crearproducto/:id',
+      path: '/crearproducto/:id/:trueorfalse?',
       name: 'crearproducto',
 
       component: () => import('@/views/Cruds/Productos/ProductoCrud')
+    },
+    {
+      path: '/ActualizarProducto/:id/:trueorfalse',
+      name: 'actualizarproducto',
+
+      component: () => import('@/views/Cruds/Productos/ProductoCrud')
+    },
+    
+    {
+      path: '/products/view',
+      name: 'productsview',
+      component: () => import('@/views/Cruds/Productos/ProductosList')
     },
 
     {

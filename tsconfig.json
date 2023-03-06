@@ -11,6 +11,7 @@
   "declareModules": [
     "vue-tables-2"
   ],
+
   "references": [
     {
       "path": "./tsconfig.config.json"

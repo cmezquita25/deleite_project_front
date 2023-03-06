@@ -50,6 +50,13 @@ const router = createRouter({
       component: () => import('@/views/Login/Registrarse')
     },
 
+    {
+      path: '/micuenta',
+      name: 'micuenta',
+
+      component: () => import('@/views/Login/Micuenta')
+    },
+
     //CRUD CATEGORIAS
     {
       path: '/crearcategoria',
@@ -67,6 +74,20 @@ const router = createRouter({
     //CRUD PRODUCTOS
     {
       path: '/crearproducto/:id/:trueorfalse?',
+      name: 'crearproducto',
+
+      component: () => import('@/views/Cruds/Productos/ProductoCrud')
+    },
+    
+    {
+      path: '/consultartematica',
+      name: 'consultartematica',
+
+      component: () => import('@/views/Cruds/Tematicas/ConsultarTematica')
+    },
+    //CRUD PRODUCTOS
+    {
+      path: '/crearproducto',
       name: 'crearproducto',
 
       component: () => import('@/views/Cruds/Productos/ProductoCrud')

@@ -1,5 +1,7 @@
 import { defineComponent } from "vue";
 import { Call } from "../../../helpers/calls/Call"
+
+
 interface Resgistrar {
     nombre?: string,
     correo?: string,
@@ -19,27 +21,27 @@ const registrarse = defineComponent({
             this.valores = ({ ...this.valores, [name]: value })
         },
 
-        Registrarse(e:any) {
+        Registrarse(e: any) {
             e.preventDefault(),
-            oCall.cenisFetch('POST', 'api/Usuario/create', "", this.valores)
-                .then((Response) => {
-                    console.log(Response)
-                    if (Response.status === 201) {
-
-                        console.log(Response),
-                        console.log("Se ha creado un nuevo usuario", Response)
+                oCall.cenisFetch('POST', 'api/Usuario/create', "", this.valores)
+                    .then((Response) => {
                         console.log(Response)
-                        this.$router.push("/inicio")
+                        if (Response.status === 201) {
 
-                    }
-                    else{
-                        console.log("Error")
-                    }
+                            console.log(Response),
+                                console.log("Se ha creado un nuevo usuario", Response)
+                            console.log(Response)
+                            this.$router.push("/inicio")
 
-                })
-                .catch((error) => {
-                    console.error("Error al crear usuario", error)
-                })
+                        }
+                        else {
+                            console.log("Error")
+                        }
+
+                    })
+                    .catch((error) => {
+                        console.error("Error al crear usuario", error)
+                    })
         }
     },
     render() {

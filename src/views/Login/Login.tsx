@@ -22,8 +22,19 @@ const login = defineComponent({
             const { name, value } = e.target;
             this.valores = ({ ...this.valores, [name]: value })
         },
-        iniciarSesion(e:any) {
-            e.preventDefault(),
+        iniciarSesion(e: any) {
+            e.preventDefault();
+
+            if (!this.valores.nombre) {
+                alert('El Nombre de usuario/Correo es requerido');
+                return;
+            }
+
+            if (!this.valores.contraseña) {
+                alert('La contraseña es requerida');
+                return;
+            }
+
             oCall.cenisFetch('POST', 'api/Usuario/login', "", this.valores)
                 .then((response) => {
                     console.log(response)
@@ -36,7 +47,7 @@ const login = defineComponent({
                         this.$router.push("/inicio")
                     }
 
-                    else{
+                    else {
                         console.log("Error")
                     }
 
@@ -70,14 +81,13 @@ const login = defineComponent({
                                     <h2 class="display-6 tituloLogin" style="color: #724a3a">INICIAR SESIÓN</h2>
                                     <br></br>
                                     <div class="form-outline mb-4">
-                                        <input type="email" id="form3Example3" value={this.login.nombre} name="nombre" onChange={(e) => this.handlerchange(e)} class="form-control form-control-lg"
-                                            placeholder="Correo" aria-label="Correo" />
+                                        <input for="validationCustom01" type="email" id="form3Example3" value={this.login.nombre} name="nombre" onChange={(e) => this.handlerchange(e)} class="form-control form-control-lg"
+                                            placeholder="Correo" aria-label="Correo" required />
                                     </div>
-
 
                                     <div class="form-outline mb-3">
                                         <input type="password" id="form3Example4" value={this.login.contraseña} name="contraseña" onChange={(e) => this.handlerchange(e)} class="form-control form-control-lg"
-                                            placeholder="Contraseña" />
+                                            placeholder="Contraseña" required />
                                     </div>
 
                                     <div class="d-flex justify-content-between align-items-center">
@@ -92,7 +102,7 @@ const login = defineComponent({
 
                                     <div class="text-center text-lg-start mt-4 pt-2">
                                         <div class="text-center">
-                                            <button onClick={(e) => this.iniciarSesion(e)} class="btn btn-login btn-login2">Iniciar sesión</button>
+                                            <button type="button" onClick={(e) => this.iniciarSesion(e)} class="btn btn-login btn-login2">Iniciar sesión</button>
                                         </div>
                                     </div>
 

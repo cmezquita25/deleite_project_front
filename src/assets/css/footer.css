@@ -55,3 +55,23 @@
     background: #000000;
     color: white;
 }
+
+.DeleiMail{
+    text-decoration: none;
+    color: white;
+    margin-bottom: 1rem;
+    width: auto;
+}
+
+.DelePhone{
+    text-decoration: none;
+    color: white;
+    margin-bottom: 1rem;
+    width: auto;
+}
+
+.contactos{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}

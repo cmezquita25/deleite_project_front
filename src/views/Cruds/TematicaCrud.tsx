@@ -29,7 +29,7 @@ const tematicaCrud = defineComponent({
                 e.preventDefault(),
                     oCall.cenisFetch("PUT", `api/Tematica/${this.id}`, "", this.valores)
                         .then((Response) => {
-                            console.log(Response)
+                            console.log("Mensaje DE Tematicas: " + Response)
                             if(Response.status === 200){
                                 console.log(Response),
                                 console.log("Se ha editado la tematica")
